@@ -1,5 +1,6 @@
 import discord
 class MyClient(discord.Client):
+    message_storage = []
     async def on_ready(self): # <-- on_ready Event
         print('Logged on as {0}!'.format(self.user)) # print statement to show it logged in
 
@@ -22,18 +23,10 @@ class MyClient(discord.Client):
             if message.content == "Pin me": #Checks to see if the message sent is "Pin me"
                 print("The bot should pin this message")
                 await message.pin() # pins that message
-                message_storage = message # Stores the message for future use
-            
-            if message.content == "Unpin that": #Checks to see if the message sent is "Unpin that"
-                print("The bot should have unpinned that")
-                await message_storage.unpin() # Unpins the message that was in message_storage
-                del message_storage # Clears message_storage
+                f = open("message_storage.txt", "w")
+                f.write(str(message.id))
+                f.close
 
-                
-
-                
-
-            
 
 client = MyClient() 
-client.run('')
+client.run('ODI5ODA3MzMzNTcwNzczMDgz.GVo7ci.CLvC_FWxx2O6_otQSQR6JfbHmxf-_iubfo0LII')
